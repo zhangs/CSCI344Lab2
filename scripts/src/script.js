@@ -18,9 +18,36 @@ function main() {
 	s.register(function(tweet) {
 		//2. Add profile images (tweet.profile_image_url)
 		var profile_image = "<img src=' "+tweet.profile_image_url+" ' />";	
+
+		$("p:even").css("background-color", "#E8E8E8");
+		$("p:odd").css("background-color", "#C0C0C0");
+				
+		//3. Make the tweets occur so the most recent are at the top				
+		//4. Make the tweets slide down		
+
+		//var myArray = [];		
+
+		var object = $("<p>" + profile_image + tweet.text+ "</p>");
+		
+		//myArray.push(object);
 		
 		
-		$("#tweets").append("<p>" + profile_image + tweet.text+ "</p>");
+		//if (var i = myArray.size - 10; i < myArray.size; i++) {
+		//	myArray[i].hide();
+		//	$("#tweets").prepend(myArray[i]);
+		//	myArray[i].slideDown();
+		//}
+		
+		object.hide();
+		$("#tweets").prepend(object);
+		object.slideDown();
+		
+		$("p:gt(9)").remove();		
+		
+
+    //5. Alternate the colors or the background of the tweets
+										
+		
 	});
 	
 	s.start();
@@ -30,19 +57,12 @@ function main() {
 
 	// function tweet appended as id
 	
-	// start s(potter)
+	// start spotter
 	
 	
 	
 	
 	
-    //3. Make the tweets occur so the most recent are at the top	
-    //4. Make the tweets slide down
-	//   Slide down (hint)
-
-	
-    //5. Alternate the colors or the background of the tweets
-	//   Alternate color by storing into seperates
 	
     //6. Show a maximum of 10 tweets at a time (remove old tweets from the dom)
 	//   Array (hint)
