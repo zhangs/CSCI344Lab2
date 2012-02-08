@@ -4,7 +4,9 @@
 function main() {
     //your code goes here
 //    alert("hello world!");
-
+	var count = 0;
+//	var object_array = new Array();
+	var object_array = [];
 
     //your tasks
 
@@ -16,34 +18,42 @@ function main() {
 						);
 						
 	s.register(function(tweet) {
+		count = count + 1;
+		var color;
+
 		//2. Add profile images (tweet.profile_image_url)
 		var profile_image = "<img src=' "+tweet.profile_image_url+" ' />";	
-
-		$("p:even").css("background-color", "#E8E8E8");
-		$("p:odd").css("background-color", "#C0C0C0");
+		
+		if (count%2 === 0) {
+			color = "red";
+		} else {
+			color = "blue";
+		}
+		
+//		$("p:even").css("background-color", "#E8E8E8");
+//		$("p:odd").css("background-color", "#C0C0C0");
 				
 		//3. Make the tweets occur so the most recent are at the top				
 		//4. Make the tweets slide down		
 
-		//var myArray = [];		
-
-		var object = $("<p>" + profile_image + tweet.text+ "</p>");
-		
-		//myArray.push(object);
-		
-		
-		//if (var i = myArray.size - 10; i < myArray.size; i++) {
-		//	myArray[i].hide();
-		//	$("#tweets").prepend(myArray[i]);
-		//	myArray[i].slideDown();
-		//}
-		
+		var object = $("<p class='"+color+"'>" + profile_image + tweet.text+ "</p>");
+				
 		object.hide();
 		$("#tweets").prepend(object);
 		object.slideDown();
 		
-		$("p:gt(9)").remove();		
+		object_array.push(object);
 		
+		if (object_array.length > 10) {
+			var object_to_remove = object_array.shift();
+			object_to_remove.fadeOut(2000, function() {
+				object_to_remove.remove();
+			});
+		}	
+		
+//		$("#tweets p:gt(9)").fadeOut(200, function() {
+//			$("#tweets p:gt(9)").remove();		
+//		});
 
     //5. Alternate the colors or the background of the tweets
 										
